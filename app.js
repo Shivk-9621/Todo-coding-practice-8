@@ -78,7 +78,7 @@ app.get("/todos/", async (request, response) => {
         AND status = '${status}';`;
       break;
     default:
-      `
+      getTodoQuery = `
       SELECT
         *
       FROM
@@ -112,7 +112,7 @@ app.post("/todos/", async (request, response) => {
      INSERT INTO
        todo (id,todo,priority,status)
      VALUES
-       (${id},'${todo}','${priority}','${status}';`;
+       (${id},'${todo}','${priority}','${status}');`;
   await db.run(postTodoQuery);
   response.send("Todo Successfully Added");
 });
@@ -127,7 +127,7 @@ app.put("/todos/:todoId/", async (request, response) => {
       break;
 
     case requestBody.priority !== undefined:
-      updateColumn = "priority";
+      updateColumn = "Priority";
       break;
 
     case requestBody.todo !== undefined:
